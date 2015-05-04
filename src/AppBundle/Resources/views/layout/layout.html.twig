@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://bootstrap-3.ru/examples/jumbotron/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" href="/images/icon.png" />
+    <title>ФУТБОЛ</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- My style CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Футбольный сайт</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            {% block login %}
+                <div class="navbar-form navbar-right" >
+                    <a href="{{ path('login') }}" class="btn btn-default">Вход</a>
+                    <a href="{{ path('login') }}#reg" class="btn btn-success">Регистрация</a>
+                </div>
+            {% endblock %}
+
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron" style="background: white;">
+    <div class="container" style="padding-top: 50px;text-align: center">
+        <img src="/images/icon.png" style="width:128px; float: left">
+        <div style="transform: rotate(-10deg); font-size: 40px; padding-top: 40px;">
+            ФУТБОЛ В МИНСКЕ
+        </div>
+    </div>
+</div>
+
+<div class="container" style="background: greenyellow;">
+    {% block body %}
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="http://bootstrap-3.ru/examples/jumbotron/#" role="button">View details »</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="http://bootstrap-3.ru/examples/jumbotron/#" role="button">View details »</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-default" href="http://bootstrap-3.ru/examples/jumbotron/#" role="button">View details »</a></p>
+        </div>
+    </div>
+    {% endblock %}
+</div> <!-- /container -->
+
+<div id="footer">
+    <div class="container">
+        <p class="text-muted text-center">Информация в футере. Криос групп. Все права защищены. 2015.</p>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./Jumbotron Template for Bootstrap_files/jquery.min.js"></script>
+<script src="./Jumbotron Template for Bootstrap_files/bootstrap.min.js"></script>
+
+</body></html>

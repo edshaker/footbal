@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" href="/images/icon.png" />
+    <title>АВТОРИЗАЦИЯ</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="selectTab"><a href="#auth">Авторизация</a></li>
+        <li role="presentation" class="selectTab"><a href="#reg">Регистрация</a></li>
+        <li role="presentation" class="selectTab"><a href="#forget">Восстановление пароля</a></li>
+    </ul>
+
+
+    <form class="form-signin oneTab " id="auth" role="form" action="{{ path('login_check') }}" method="post">
+        {% if error_auth %}
+            <div>{{ error_auth.message }}</div>
+        {% endif %}
+        <h2 class="form-signin-heading">Авторизация</h2>
+        <input type="text" name="_username" class="form-control" placeholder="Логин" value="{{ last_username }}" required autofocus>
+        <input type="password" name="_password" class="form-control" placeholder="Пароль" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+    </form>
+    <form class="form-signin oneTab " id="reg" role="form" action="{{ path('register') }}" method="post">
+        {% if error_reg %}
+            {% for error in error_reg %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        {% endif %}
+        <h2 class="form-signin-heading">Регистрация</h2>
+        <input type="text" name="form[username]" class="form-control" placeholder="Логин" required autofocus>
+        <input type="text" name="form[city]" class="form-control" placeholder="Город" required >
+        <input type="email" name="form[email]" class="form-control" placeholder="Email" required >
+        <input type="password" name="form[password]" class="form-control" placeholder="Пароль" required>
+        <input type="password" name="form[password2]" class="form-control" placeholder="Пароль еще раз" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
+    </form>
+
+    <form class="form-signin oneTab " id="forget" role="form" action="{{ path('getnewpass') }}">
+        {% if error_forget %}
+            <div>{{ error_forget }}</div>
+        {% endif %}
+        <h2 class="form-signin-heading">Восстановление пароля</h2>
+        <input type="email" class="form-control" name="email" placeholder="Email address" required autofocus>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Отправить новый пароль</button>
+    </form>
+
+</div> <!-- /container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+</body>
+<script>
+    $().ready(function(){
+        updateTab=function(current){
+            $('.oneTab').hide();
+            $('#'+current.substring(1)).show();
+        };
+        updateTab(location.hash?location.hash:'#auth');
+        $('.selectTab').click(function(){
+            updateTab($(this).children().attr('href'));
+        })
+    });
+</script>
+<style>
+    body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #eee;
+    }
+    .oneTab{
+        display: none;
+    }
+    .nav-tabs{
+        max-width: 430px;
+        margin: 0 auto;
+    }
+    .form-signin {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .btn{
+        margin-top: 10px;
+    }
+</style>
+</html>

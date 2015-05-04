@@ -1,0 +1,26 @@
+security:
+    firewalls:
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                login_path:  /login
+                check_path:  /login_check
+            logout:
+                path:   /logout
+                target: /
+    access_control:
+        - { path: ^/cabinet, roles: ROLE_USER }
+
+
+
+    providers:
+          user_db:
+                entity: { class: AppBundle\Entity\User, property: username }
+
+
+    encoders:
+            AppBundle\Entity\User:
+                algorithm:   sha1
+                iterations: 1
+                encode_as_base64: false
