@@ -1,0 +1,113 @@
+{% extends 'AppBundle:layout:layout.html.twig' %}
+
+{% block body %}
+
+
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#anketa">Анкета</a></li>
+        <li><a href="#profile">Навыки</a></li>
+        <li><a href="#messages">Уведомления</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="anketa">
+
+            <h1>Профиль пользователя</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    {% if info.avatar %}
+                        <img src="{{ info.avatar }}"/>
+                    {% else %}
+                        <img src="/images/noavatar.png"/>
+                    {% endif %}
+                </div>
+                <div class="col-md-5">
+                    <form action="{{ path('savesettings') }}" method="post"/>
+                        <div class="row">
+                            <div class="col-md-4">
+                                ДР
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" value="{{ info.birthdate|date('Y-m-d') }}" name="form[birthdate]" class="datepicker" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                город
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" value="{{ info.city }}" name="form[city]" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Имя
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" value="{{ info.name }}" name="form[name]" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Пол
+                            </div>
+                            <div class="col-md-8">
+                                <input type="radio" value="1" name="form[sex]" {% if info.sex %}checked{% endif %}/> муж
+                                <input type="radio" value="0" name="form[sex]" {% if not info.sex %}checked{% endif %}/> жен
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Телефон
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" value="{{ info.phone }}" name="form[phone]" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Скайп
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" value="{{ info.skype }}" name="form[skype]" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                О себе
+                            </div>
+                            <div class="col-md-8">
+                                <textarea name="form[about]">{{ info.about }}</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <input type="submit" value="Сохранить"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-3">
+                    <h4>Связать</h4>
+                    <div>VK</div>
+                    <div>FB</div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="tab-pane" id="profile">profile</div>
+        <div class="tab-pane" id="messages">messages</div>
+    </div>
+
+    <script>
+        $(function () {
+            $('#myTab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            })
+        })
+    </script>
+
+
+
+{% endblock %}

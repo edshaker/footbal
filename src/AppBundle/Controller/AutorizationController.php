@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\User;
+use AppBundle\Entity\UserInfo;
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,10 +72,16 @@ class AutorizationController extends Controller
             }
             else
             {
+
                 $user->setPasswordAndEncrypt($user->getPassword());
                 $user->setRole(1);
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($user);
+                $em->flush();
+                $userInfo = new UserInfo();
+                $userInfo->setId($user->getId());
+                $userInfo->setCity($user->getCity());
+                $em->persist($userInfo);
                 $em->flush();
                 return new RedirectResponse($this->generateUrl('registerok'));
             }

@@ -64,7 +64,6 @@ class User  implements UserInterface
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(name="city", type="string", length=255, unique=true)
      */
     private $city;
 

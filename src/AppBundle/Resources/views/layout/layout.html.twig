@@ -9,10 +9,21 @@
     <link rel="icon" type="image/png" href="/images/icon.png" />
     <title>ФУТБОЛ</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap  -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript  -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Jquery UI  -->
+    <script src="/js/jquery-ui.js"></script>
+    <link href="/css/jquery-ui.css" rel="stylesheet">
+
     <!-- My style CSS -->
     <link href="/css/style.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -34,12 +45,26 @@
             <a class="navbar-brand" href="/">Футбольный сайт</a>
         </div>
         <div class="navbar-collapse collapse">
-            {% block login %}
+
+            {% if app.user.id is defined  %}
+                <div class="navbar-form navbar-right" >
+                    <div class="dropdown">
+                        <a type="button" id="drop001" role="button" class="btn btn-success" data-toggle="dropdown" href="#">{{ app.user.username }}</a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="drop001">
+                            <li><a href="{{ path('cabinet') }}">Профиль</a></li>
+                            <li><a href="{{ path('settings') }}">Настройки</a></li>
+                            <li><a href="{{ path('cabinet') }}">Сообщения</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ path('logout') }}" >Выход</a></li>
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
                 <div class="navbar-form navbar-right" >
                     <a href="{{ path('login') }}" class="btn btn-default">Вход</a>
                     <a href="{{ path('login') }}#reg" class="btn btn-success">Регистрация</a>
                 </div>
-            {% endblock %}
+            {% endif %}
 
         </div><!--/.navbar-collapse -->
     </div>
@@ -55,7 +80,7 @@
     </div>
 </div>
 
-<div class="container" style="background: greenyellow;">
+<div class="container" style="background: #cccccc;">
     {% block body %}
     <!-- Example row of columns -->
     <div class="row">
@@ -84,10 +109,9 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="./Jumbotron Template for Bootstrap_files/jquery.min.js"></script>
-<script src="./Jumbotron Template for Bootstrap_files/bootstrap.min.js"></script>
-
+<script>
+    $().ready(function(){
+        $('.datepicker').datepicker({dateFormat:'yy-mm-dd'});
+    })
+</script>
 </body></html>
