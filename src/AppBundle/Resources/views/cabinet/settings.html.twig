@@ -1,17 +1,18 @@
 {% extends 'AppBundle:layout:layout.html.twig' %}
 
 {% block body %}
-
-
+    {% if message %}
+        <hr/>
+        <div class="text-center"><p class="btn btn-success">{{ message }}</p></div>
+        <hr/>
+    {% endif %}
     <ul class="nav nav-tabs" id="myTab">
         <li class="active"><a href="#anketa">Анкета</a></li>
         <li><a href="#profile">Навыки</a></li>
         <li><a href="#messages">Уведомления</a></li>
     </ul>
-
     <div class="tab-content">
         <div class="tab-pane active" id="anketa">
-
             <h1>Профиль пользователя</h1>
             <div class="row">
                 <div class="col-md-4">
@@ -20,6 +21,9 @@
                     {% else %}
                         <img src="/images/noavatar.png"/>
                     {% endif %}
+                    <p><a href="#">Сменить аватар</a></p>
+                    <p><a href="{{ path('changepass') }}">Сменить пароль</a></p>
+
                 </div>
                 <div class="col-md-5">
                     <form action="{{ path('savesettings') }}" method="post"/>
@@ -90,6 +94,7 @@
                     <div>VK</div>
                     <div>FB</div>
                 </div>
+                <p><a href="#">Удалить аккаунт</a></p>
             </div>
 
 

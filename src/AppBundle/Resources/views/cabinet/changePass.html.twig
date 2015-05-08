@@ -1,0 +1,23 @@
+{% extends 'AppBundle:layout:layout.html.twig' %}
+
+{% block body %}
+    {% if message %}
+        <hr/>
+        <div class="text-center"><p class="btn btn-danger">{{ message }}</p></div>
+        <hr/>
+    {% endif %}
+    <form class="form-signin oneTab " id="auth" role="form" action="{{ path('savechangepass') }}" method="post">
+        <h2 class="form-signin-heading text-center">Смена пароля</h2>
+        <input type="password" name="old_pass" class="form-control" placeholder="Текщий пароль" required>
+        <input type="password" name="password" class="form-control" placeholder="Новый пароль" required>
+        <input type="password" name="password2" class="form-control" placeholder="Повторение пароля" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Сохранить</button>
+    </form>
+    <style>
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+    </style>
+{% endblock %}

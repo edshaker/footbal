@@ -113,11 +113,27 @@ class User  implements UserInterface
 
         return $this;
     }
+    /**
+     * Set password and encrypt it for saving in db
+     *
+     * @param string $password
+     * @return User
+     */
     public function setPasswordAndEncrypt($password)
     {
         $this->password = sha1($password);
 
         return $this;
+    }
+    /**
+     * is password correct
+     *
+     * @param string $password
+     * @return User
+     */
+    public function isPasswordCorrect($password)
+    {
+        return sha1($password)==$this->password;
     }
 
     /**
