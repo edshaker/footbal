@@ -1,0 +1,22 @@
+<h4>Какие уведомления вы хотите получать на указанную при регистрации почту?</h4>
+    <form action="{{ path('savenotifications') }}" method="post">
+        <div class="row">
+                <div style="width: 100px;margin: 30px auto; border: 1px solid #000000;padding: 5px;">
+                    {{ app.user.email }}
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-left">
+                <form action="{{ path('savenotifications') }}" method="post">
+                    {% for notification in notifications %}
+                        <p>
+                            <input type="checkbox" {%  if notification.id in userNotifications %}checked{% endif %} name="notifications[]" value="{{ notification.id }}">
+                            {{ notification.name }}
+                        </p>
+                    {% endfor %}
+                    <input type="submit" />
+                </form>
+            </div>
+        </div>
+    </form>

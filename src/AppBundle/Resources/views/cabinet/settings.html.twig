@@ -8,111 +8,18 @@
     {% endif %}
     <ul class="nav nav-tabs" id="myTab">
         <li class="active"><a href="#anketa">Анкета</a></li>
-        <li><a href="#profile">Навыки</a></li>
+        <li><a href="#skills">Навыки</a></li>
         <li><a href="#messages">Уведомления</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="anketa">
-            <h1>Профиль пользователя</h1>
-            <div class="row">
-                <div class="col-md-4">
-                    {% if info.avatar %}
-                        <img src="{{ info.avatar }}"/>
-                    {% else %}
-                        <img src="/images/noavatar.png"/>
-                    {% endif %}
-                    <p><a href="#">Сменить аватар</a></p>
-                    <p><a href="{{ path('changepass') }}">Сменить пароль</a></p>
-
-                </div>
-                <div class="col-md-5">
-                    <form action="{{ path('savesettings') }}" method="post"/>
-                        <div class="row">
-                            <div class="col-md-4">
-                                ДР
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" value="{{ info.birthdate|date('Y-m-d') }}" name="form[birthdate]" class="datepicker" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                город
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" value="{{ info.city }}" name="form[city]" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                Имя
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" value="{{ info.name }}" name="form[name]" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                Пол
-                            </div>
-                            <div class="col-md-8">
-                                <input type="radio" value="1" name="form[sex]" {% if info.sex %}checked{% endif %}/> муж
-                                <input type="radio" value="0" name="form[sex]" {% if not info.sex %}checked{% endif %}/> жен
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                Телефон
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" value="{{ info.phone }}" name="form[phone]" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                Скайп
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" value="{{ info.skype }}" name="form[skype]" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                О себе
-                            </div>
-                            <div class="col-md-8">
-                                <textarea name="form[about]">{{ info.about }}</textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                                <input type="submit" value="Сохранить"/>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-3">
-                    <h4>Связать</h4>
-                    <div>VK</div>
-                    <div>FB</div>
-                </div>
-                <p><a href="#">Удалить аккаунт</a></p>
-            </div>
-
-
-
+            {% include 'AppBundle:cabinet:anketa.html.twig' with {'info': info} %}
         </div>
-        <div class="tab-pane" id="profile">profile</div>
-        <div class="tab-pane" id="messages">messages</div>
+    <div class="tab-pane" id="skills">
+        {% include 'AppBundle:cabinet:skills.html.twig' with {'info': info,'levels':levels,'skills':skills} %}
     </div>
-
-    <script>
-        $(function () {
-            $('#myTab a').click(function (e) {
-                e.preventDefault();
-                $(this).tab('show');
-            })
-        })
-    </script>
-
-
-
+    <div class="tab-pane" id="messages">
+        {% include 'AppBundle:cabinet:notifications.html.twig' with {'notifications': notifications,'userNotifications':userNotifications} %}
+    </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,36 @@
+<h1>Мои навыки</h1>
+<div class="row">
+    <form action="{{ path('saveskills') }}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="width: 100px;margin: 0 auto;margin-top: 50px;">
+                    <p>Амплуа</p>
+                    <select name="form[level]">
+                        {% for level in levels %}
+                        <option value="{{ level.id }}" {% if level.id==info.level %} selected {% endif %}>
+                            {{ level.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="width: 100px;margin: 0 auto;margin-top: 50px;">
+                    <p>Уровень</p>
+                    <select name="form[skill]">
+                        {% for skill in skills %}
+                            <option value="{{ skill.id }}" {% if skill.id==info.skill %} selected {% endif %}>
+                                {{ skill.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div style="width: 100px;margin: 0 auto;margin-top: 70px;margin-bottom: 70px;">
+                <input type="submit"/>
+            </div>
+        </div>
+    </form>
+</div>

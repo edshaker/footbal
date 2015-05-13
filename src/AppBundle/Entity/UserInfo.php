@@ -90,7 +90,18 @@ class UserInfo
      * @ORM\Column(name="vk_id", type="string", length=255, nullable=true)
      */
     private $vkId;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="level", type="string", length=255, nullable=true)
+     */
+    private $level;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="skill", type="string", length=255, nullable=true)
+     */
+    private $skill;
     /**
      * Set id
      *
@@ -320,6 +331,24 @@ class UserInfo
     {
         return $this->fbId;
     }
+    /**
+     * Get Level
+     *
+     * @return string
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+    /**
+     * Get skill
+     *
+     * @return string
+     */
+    public function getskill()
+    {
+        return $this->skill;
+    }
 
     /**
      * Set vkId
@@ -333,7 +362,30 @@ class UserInfo
 
         return $this;
     }
+    /**
+     * Set Level
+     *
+     * @param string $level
+     * @return UserInfo
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
 
+        return $this;
+    }
+    /**
+     * Set Skill
+     *
+     * @param string $skill
+     * @return UserInfo
+     */
+    public function setSkill($skill)
+    {
+        $this->skill = $skill;
+
+        return $this;
+    }
     /**
      * Get vkId
      *
