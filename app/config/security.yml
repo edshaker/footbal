@@ -11,6 +11,7 @@ security:
                 target: /
     access_control:
         - { path: ^/cabinet, roles: ROLE_USER }
+        - { path: ^/deletedpage, roles: DELETED_USER }
 
 
 

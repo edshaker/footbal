@@ -12,9 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use AppBundle\Resources\Images;
 class CabinetController extends Controller
 {
+
     const MESSAGE='message';
     /**
      * @Route("/cabinet",name="cabinet")
@@ -139,13 +139,20 @@ class CabinetController extends Controller
     public function deleteAccountAction(Request $request)
     {
         //TODO удаление пользователя путем добавления роли удаленного пользователя
-        throw new Exception('Пока не реализовано');
-//        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneById($this->getUser()->getId());
-//        $user->setRole('USER_DELETED');
-//        $em = $this->getDoctrine()->getEntityManager();
-//        $em->persist($user);
-//        $em->flush();
-//        return  new RedirectResponse($this->generateUrl('/'));
+//        throw new Exception('Пока не реализовано');
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneById($this->getUser()->getId());
+        $user->addRole('DELETED_USER');
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($user);
+        $em->flush();
+        return  new RedirectResponse('/');
+    }
+    /**
+     * @Route("/deletedPage",name="deletedpage")
+     */
+    public function deletedPageAction()
+    {
+        return $this->render('AppBundle:Cabinet:deletedPage.html.twig');
     }
     /**
      * @Route("/cabinet/changeavatar",name="changeavatar")
@@ -162,7 +169,6 @@ class CabinetController extends Controller
         $userInfo = $this->getDoctrine()->getRepository('AppBundle:UserInfo')->findOneById($this->getUser()->getId());
         if(file_exists(__DIR__.'/../../../web'.$userInfo->getAvatar()))
             unlink(__DIR__.'/../../../web'.$userInfo->getAvatar());
-        //TODO удалить старые фотки
         $userInfo->setAvatar('/userImages/'.$this->getUser()->getId().'/'.$originalName);
 
         $em = $this->getDoctrine()->getEntityManager();

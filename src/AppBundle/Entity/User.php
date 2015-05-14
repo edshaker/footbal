@@ -49,7 +49,7 @@ class User  implements UserInterface
     /**
      * @var integer
      *
-     * @ORM\Column(name="role", type="integer")
+     * @ORM\Column(name="role", type="string", length=255)
      */
     private $role;
 
@@ -156,26 +156,33 @@ class User  implements UserInterface
         return $this;
     }
     /**
-     * Set role
-     *
-     * @param integer $role
-     * @return User
-     */
-    public function setRole($role)
+    * add role
+    *
+    * @return User
+    */
+    public function addRole($role)
     {
-        $this->role = $role;
-
+        if(!in_array($role,explode(',',$this->role)))
+            $this->role.=','.$role;
         return $this;
     }
-
     /**
-     * Get role
+     * remove role
      *
-     * @return integer 
+     * @return User
      */
-    public function getRole()
+    public function removeRole($role)
     {
-        return array('ROLE_USER');
+        $roles=explode(',',$this->role);
+        if(in_array($role,$roles))
+        {
+            $this->role = '';
+            foreach ($roles as $one) {
+                if($one!=$role)
+                    $this->role.=','.$one;
+            }
+        };
+        return $this;
     }
     /**
      * Get roles
@@ -184,7 +191,7 @@ class User  implements UserInterface
      */
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return explode(',',$this->role);
     }
     /**
      * Set email

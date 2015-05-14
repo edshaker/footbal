@@ -74,7 +74,7 @@ class AutorizationController extends Controller
             {
 
                 $user->setPasswordAndEncrypt($user->getPassword());
-                $user->setRole(1);
+                $user->addRole('ROLE_USER');
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($user);
                 $em->flush();
